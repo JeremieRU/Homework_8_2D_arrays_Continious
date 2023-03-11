@@ -90,11 +90,17 @@ void SmallestLine(int[,] arr)
 
 int[,] MatrixMultiplication2x2(int[,] arr1, int[,] arr2)
 {
-    int[,] matrixresult = new int[2, 2];
-    matrixresult[0, 0] = arr1[0, 0] * arr2[0, 0] + arr1[0, 1] * arr2[1, 0];
-    matrixresult[0, 1] = arr1[0, 0] * arr2[0, 1] + arr1[0, 1] * arr2[1, 1];
-    matrixresult[1, 0] = arr1[1, 0] * arr2[0, 0] + arr1[1, 1] * arr2[1, 0];
-    matrixresult[1, 1] = arr1[1, 0] * arr2[0, 1] + arr1[1, 1] * arr2[1, 1];
+    int[,] matrixresult = new int[arr1.GetLength(0), arr2.GetLength(1)];
+    for (int i = 0; i < matrixresult.GetLength(0); i++)
+    {
+        for (int j = 0; j < matrixresult.GetLength(1); j++)
+        {
+            for (int k = 0; k < arr1.GetLength(1); k++)
+            {
+                matrixresult[i, j] += arr1[i, k] * arr2[k, j];
+            }
+        }
+    }
     return matrixresult;
 }
 
